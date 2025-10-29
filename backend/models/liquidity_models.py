@@ -44,6 +44,8 @@ class HistoricalDataPoint(BaseModel):
     manufacturing_yoy: float
     tga_rrp_4wk_change: float
     signal: SignalType
+    btc_index: Optional[float] = None  # normalized % change since start
+    spx_index: Optional[float] = None  # normalized % change since start
 
 class SystemStatus(BaseModel):
     status: str

@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link, useLocation } from 'react-router-dom'
 import { 
   Activity, 
   BarChart3, 
@@ -10,13 +11,15 @@ import {
 } from 'lucide-react'
 
 const Sidebar: React.FC = () => {
+  const location = useLocation()
+  
   const menuItems = [
-    { icon: Activity, label: 'COMMAND CENTER', active: true },
-    { icon: BarChart3, label: 'ANALYTICS', active: false },
-    { icon: TrendingUp, label: 'TRENDS', active: false },
-    { icon: AlertTriangle, label: 'ALERTS', active: false },
-    { icon: FileText, label: 'REPORTS', active: false },
-    { icon: Settings, label: 'SYSTEMS', active: false },
+    { icon: Activity, label: 'COMMAND CENTER', path: '/', active: location.pathname === '/' },
+    { icon: BarChart3, label: 'ANALYTICS', path: '/', active: false },
+    { icon: TrendingUp, label: 'TRENDS', path: '/', active: false },
+    { icon: AlertTriangle, label: 'ALERTS', path: '/', active: false },
+    { icon: FileText, label: 'REPORTS', path: '/reports', active: location.pathname === '/reports' },
+    { icon: Settings, label: 'SYSTEMS', path: '/', active: false },
   ]
 
   return (
@@ -41,7 +44,8 @@ const Sidebar: React.FC = () => {
         <ul className="space-y-2">
           {menuItems.map((item, index) => (
             <li key={index}>
-              <button
+              <Link
+                to={item.path}
                 className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-200 ${
                   item.active
                     ? 'bg-tactical-orange text-black font-semibold'
@@ -52,7 +56,7 @@ const Sidebar: React.FC = () => {
                 <span className="font-jetbrains text-sm uppercase tracking-wider">
                   {item.label}
                 </span>
-              </button>
+              </Link>
             </li>
           ))}
         </ul>

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Activity, Wifi, WifiOff } from 'lucide-react'
+import { Wifi, WifiOff } from 'lucide-react'
 
 interface HeaderProps {
   isConnected: boolean

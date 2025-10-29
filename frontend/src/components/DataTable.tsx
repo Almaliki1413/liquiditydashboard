@@ -16,14 +16,27 @@ const DataTable: React.FC<DataTableProps> = ({ data }) => {
       dates.push(date.toLocaleDateString('en-GB'))
     }
 
-    return dates.map((date, index) => ({
-      date,
-      fed_yoy: (data.fed_yoy + (Math.random() - 0.5) * 10).toFixed(1),
-      m2_yoy: (data.m2_yoy + (Math.random() - 0.5) * 5).toFixed(1),
-      manufacturing_yoy: (data.manufacturing_yoy + (Math.random() - 0.5) * 8).toFixed(1),
-      tga_rrp_change: (data.tga_rrp_4wk_change + (Math.random() - 0.5) * 50).toFixed(0),
-      status: index === 0 ? data.signal : ['RISK-ON', 'TIGHT', 'NEUTRAL'][Math.floor(Math.random() * 3)]
-    }))
+    return dates.map((date, index) => {
+      const fed_yoy = parseFloat((data.fed_yoy + (Math.random() - 0.5) * 10).toFixed(1))
+      const m2_yoy = parseFloat((data.m2_yoy + (Math.random() - 0.5) * 5).toFixed(1))
+      const manufacturing_yoy = parseFloat((data.manufacturing_yoy + (Math.random() - 0.5) * 8).toFixed(1))
+      const tga_rrp_change = parseFloat((data.tga_rrp_4wk_change + (Math.random() - 0.5) * 50).toFixed(0))
+
+      const riskOn = fed_yoy > 0 && m2_yoy > 0 && manufacturing_yoy >= 0 && tga_rrp_change < 0
+      const tight = fed_yoy < -3 && manufacturing_yoy <= -3
+      const status = index === 0 ? data.signal : (riskOn ? 'RISK-ON' : (tight ? 'TIGHT' : 'NEUTRAL'))
+
+      let rationale = ''
+      if (status === 'RISK-ON') {
+        rationale = 'Fed expanding, M2 growing, manufacturing stable, and net drain negative (injections)'
+      } else if (status === 'TIGHT') {
+        rationale = 'Fed contracting and manufacturing weak; conditions restrictive'
+      } else {
+        rationale = 'Mixed signals: neither sustained injections nor broad contraction'
+      }
+
+      return { date, fed_yoy, m2_yoy, manufacturing_yoy, tga_rrp_change, status, rationale }
+    })
   }
 
   const tableData = generateTableData()
@@ -68,6 +81,9 @@ const DataTable: React.FC<DataTableProps> = ({ data }) => {
               <th className="text-left py-3 px-4 font-jetbrains text-xs text-gray-400 uppercase tracking-wider">
                 STATUS
               </th>
+              <th className="text-left py-3 px-4 font-jetbrains text-xs text-gray-400 uppercase tracking-wider">
+                RATIONALE
+              </th>
             </tr>
           </thead>
           <tbody>
@@ -92,6 +108,9 @@ const DataTable: React.FC<DataTableProps> = ({ data }) => {
                   <span className={`px-2 py-1 rounded text-xs ${getStatusStyle(row.status)}`}>
                     {row.status}
                   </span>
+                </td>
+                <td className="py-3 px-4 font-jetbrains text-xs text-gray-300 max-w-[420px]">
+                  {row.rationale}
                 </td>
               </tr>
             ))}

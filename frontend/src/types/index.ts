@@ -41,6 +41,8 @@ export interface HistoricalDataPoint {
   manufacturing_yoy: number
   tga_rrp_4wk_change: number
   signal: 'RISK-ON' | 'TIGHT' | 'NEUTRAL'
+  btc_index?: number
+  spx_index?: number
 }
 
 export interface ChartData {

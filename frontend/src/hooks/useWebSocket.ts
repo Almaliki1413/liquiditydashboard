@@ -8,7 +8,7 @@ export const useWebSocket = () => {
   const [isConnected, setIsConnected] = useState(false)
   const [data, setData] = useState<LiquidityData | null>(null)
   const ws = useRef<WebSocket | null>(null)
-  const reconnectTimeoutRef = useRef<NodeJS.Timeout | null>(null)
+  const reconnectTimeoutRef = useRef<number | null>(null)
 
   const connect = () => {
     try {

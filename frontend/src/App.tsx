@@ -1,9 +1,9 @@
-import React from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { Toaster } from 'react-hot-toast'
 import Header from './components/Header'
 import Sidebar from './components/Sidebar'
 import Dashboard from './components/Dashboard'
+import Reports from './components/Reports'
 import { useWebSocket } from './hooks/useWebSocket'
 import { useLiquidityData } from './hooks/useLiquidityData'
 
@@ -36,6 +36,7 @@ function App() {
           <main className="flex-1 p-6">
             <Routes>
               <Route path="/" element={<Dashboard data={data} loading={loading} error={error} />} />
+              <Route path="/reports" element={data ? <Reports data={data} /> : <div>Loading...</div>} />
             </Routes>
           </main>
         </div>

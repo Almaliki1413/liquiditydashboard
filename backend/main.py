@@ -1,5 +1,6 @@
 from fastapi import FastAPI, WebSocket, WebSocketDisconnect, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.middleware.gzip import GZipMiddleware
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
 import uvicorn
@@ -27,12 +28,15 @@ app = FastAPI(
     version="2.1.7"
 )
 
+# Compression for faster payload delivery
+app.add_middleware(GZipMiddleware, minimum_size=500)
+
 # CORS middleware for frontend communication
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000", "http://localhost:5173"],  # React dev servers
+    allow_origins=["http://localhost:3000", "http://localhost:5173", "http://127.0.0.1:3000"],  # React dev servers
     allow_credentials=True,
-    allow_methods=["*"],
+    allow_methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allow_headers=["*"],
 )
 
@@ -85,9 +89,14 @@ async def get_signal_status():
 async def get_historical_data(days: int = 365):
     """Get historical liquidity data"""
     try:
+        print(f"Fetching historical data for {days} days...")
         data = await liquidity_service.get_historical_data(days)
+        print(f"Successfully fetched {len(data)} historical data points")
         return data
     except Exception as e:
+        print(f"Error in historical data endpoint: {str(e)}")
+        import traceback
+        traceback.print_exc()
         raise HTTPException(status_code=500, detail=str(e))
 
 @app.websocket("/ws")
@@ -107,6 +116,12 @@ async def websocket_endpoint(websocket: WebSocket):
 @app.on_event("startup")
 async def startup_event():
     """Start background tasks on startup"""
+    # Pre-warm cache to reduce first-hit latency
+    try:
+        await liquidity_service.get_liquidity_data()
+        await liquidity_service.get_historical_data(365)
+    except Exception as e:
+        print(f"Pre-warm error: {e}")
     asyncio.create_task(periodic_update())
 
 async def periodic_update():
