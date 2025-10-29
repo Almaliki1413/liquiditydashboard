@@ -1,0 +1,90 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply border-gray-700;
+  }
+  
+  body {
+    @apply bg-tactical-dark text-white font-inter;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+@layer components {
+  .tactical-panel {
+    @apply bg-gradient-to-br from-tactical-darker to-tactical-darkest border border-gray-700 rounded-lg p-6 shadow-2xl relative overflow-hidden;
+  }
+  
+  .tactical-panel::before {
+    content: '';
+    @apply absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-tactical-orange to-transparent;
+  }
+  
+  .tactical-title {
+    @apply font-orbitron text-tactical-orange text-xl font-bold uppercase tracking-wider;
+    text-shadow: 0 0 10px rgba(255, 107, 53, 0.3);
+  }
+  
+  .metric-card {
+    @apply bg-gradient-to-br from-tactical-darker to-tactical-darkest border border-gray-700 border-l-4 border-l-tactical-orange rounded-lg p-5 transition-all duration-300 hover:transform hover:-translate-y-1 hover:shadow-xl hover:border-l-tactical-green relative overflow-hidden;
+  }
+  
+  .metric-card::before {
+    content: '';
+    @apply absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent;
+  }
+  
+  .metric-value {
+    @apply font-jetbrains text-3xl font-bold text-white;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+  }
+  
+  .metric-label {
+    @apply font-inter text-xs text-gray-400 uppercase tracking-wider mt-1;
+  }
+  
+  .signal-status {
+    @apply p-6 rounded-lg text-center font-orbitron font-bold uppercase tracking-wider relative overflow-hidden;
+  }
+  
+  .signal-risk-on {
+    @apply bg-gradient-to-r from-tactical-green to-green-600 text-black;
+    box-shadow: 0 0 30px rgba(0, 255, 136, 0.4);
+  }
+  
+  .signal-tight {
+    @apply bg-gradient-to-r from-tactical-red to-red-600 text-white;
+    box-shadow: 0 0 30px rgba(255, 68, 68, 0.4);
+  }
+  
+  .signal-neutral {
+    @apply bg-gradient-to-r from-tactical-orange to-orange-500 text-white;
+    box-shadow: 0 0 30px rgba(255, 107, 53, 0.4);
+  }
+  
+  .status-dot {
+    @apply w-2 h-2 rounded-full bg-tactical-green animate-pulse-slow;
+  }
+  
+  .tactical-button {
+    @apply bg-gradient-to-r from-tactical-orange to-orange-500 text-white font-orbitron font-semibold uppercase tracking-wider px-6 py-3 rounded-lg transition-all duration-300 hover:transform hover:-translate-y-0.5 hover:shadow-lg;
+    box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
+  }
+  
+  .tactical-button:hover {
+    box-shadow: 0 8px 25px rgba(255, 107, 53, 0.4);
+  }
+}
+
+@layer utilities {
+  .text-glow {
+    text-shadow: 0 0 10px currentColor;
+  }
+  
+  .border-glow {
+    box-shadow: 0 0 10px currentColor;
+  }
+}

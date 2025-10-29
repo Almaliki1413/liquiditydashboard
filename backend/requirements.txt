@@ -1,0 +1,14 @@
+fastapi
+uvicorn[standard]
+pandas
+numpy
+plotly
+fredapi
+python-dotenv
+requests
+yfinance
+quandl
+pydantic
+python-multipart
+websockets
+sqlalchemy
