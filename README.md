@@ -1,18 +1,18 @@
-# 🚀 Liquidity Command - Professional Dashboard
+#  Liquidity Dashboard
 
 A modern, enterprise-grade liquidity analytics dashboard built with React, TypeScript, FastAPI, and real-time WebSocket connections.
 
-## ✨ Features
+## Features
 
-- **🎯 Tactical Command Center UI** - Professional dark theme with orange accents
-- **📊 Real-time Data** - Live liquidity metrics and signals
-- **⚡ WebSocket Integration** - Real-time updates without page refresh
-- **📈 Interactive Charts** - Professional data visualization with Recharts
-- **🔒 Enterprise Security** - Professional authentication and data handling
-- **📱 Responsive Design** - Works on all devices
-- **🚀 High Performance** - Optimized for speed and reliability
+- ** Tactical Command Center UI** - Professional dark theme with orange accents
+- **Real-time Data** - Live liquidity metrics and signals
+- **WebSocket Integration** - Real-time updates without page refresh
+- **Interactive Charts** - Professional data visualization with Recharts
+- **Enterprise Security** - Professional authentication and data handling
+- **Responsive Design** - Works on all devices
+- **High Performance** - Optimized for speed and reliability
 
-## 🏗️ Architecture
+## Architecture
 
 ### Frontend (React + TypeScript)
 - **React 18** with TypeScript
@@ -31,7 +31,7 @@ A modern, enterprise-grade liquidity analytics dashboard built with React, TypeS
 - **Pandas** for data processing
 - **Plotly** for chart generation
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Prerequisites
 - Node.js 18+
@@ -81,7 +81,7 @@ VITE_API_URL=http://localhost:8000
 VITE_WS_URL=ws://localhost:8000/ws
 ```
 
-## 📊 API Endpoints
+## API Endpoints
 
 - `GET /api/health` - System health check
 - `GET /api/liquidity-data` - Current liquidity data
@@ -90,7 +90,7 @@ VITE_WS_URL=ws://localhost:8000/ws
 - `GET /api/historical-data` - Historical data
 - `WS /ws` - WebSocket for real-time updates
 
-## 🎨 UI Components
+## UI Components
 
 - **Header** - Command center branding and status
 - **Sidebar** - Navigation and system status
@@ -99,7 +99,7 @@ VITE_WS_URL=ws://localhost:8000/ws
 - **LiquidityChart** - Interactive data visualization
 - **DataTable** - Mission log with recent data
 
-## 🚀 Deployment
+## Deployment
 
 ### Production Build
 ```bash
@@ -117,7 +117,7 @@ uvicorn main:app --host 0.0.0.0 --port 8000
 docker-compose -f docker-compose.prod.yml up --build
 ```
 
-## 🔒 Security Features
+## Security Features
 
 - CORS protection
 - Input validation with Pydantic
@@ -125,7 +125,7 @@ docker-compose -f docker-compose.prod.yml up --build
 - Professional error handling
 - Rate limiting (configurable)
 
-## 📈 Performance
+## Performance
 
 - **Frontend**: Vite for fast builds and HMR
 - **Backend**: FastAPI for high-performance API
@@ -133,7 +133,7 @@ docker-compose -f docker-compose.prod.yml up --build
 - **Caching**: Intelligent data caching
 - **Optimization**: Code splitting and lazy loading
 
-## 🛠️ Development
+##  Development
 
 ### Code Structure
 ```
@@ -159,7 +159,7 @@ liquidity-dashboard-pro/
 - `npm run lint` - Run ESLint
 - `uvicorn main:app --reload` - Start backend with hot reload
 
-## 🤝 Contributing
+## Contributing
 
 1. Fork the repository
 2. Create a feature branch
@@ -167,11 +167,11 @@ liquidity-dashboard-pro/
 4. Add tests if applicable
 5. Submit a pull request
 
-## 📄 License
+## License
 
 This project is licensed under the MIT License.
 
-## 🆘 Support
+## Support
 
 For support and questions:
 - Create an issue on GitHub
@@ -180,4 +180,4 @@ For support and questions:
 
 ---
 
-**Built with ❤️ for professional financial analytics**
+
